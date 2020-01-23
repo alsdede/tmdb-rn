@@ -17,7 +17,7 @@ export default () => {
         }
     };
     useEffect(() => {
-        searchApi('avengers');
+        searchApi('avenger');
     }, []);
     return [searchApi, results, errorMessage];
 };

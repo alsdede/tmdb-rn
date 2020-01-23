@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Text, StyleSheet, ScrollView } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import useMovies from '../hooks/useMovies';
-// import MoviesList from '../components/MoviesList';
+import MoviesList from '../components/MoviesList';
 
 const styles = StyleSheet.create({
     titleStyle: {
@@ -23,7 +23,7 @@ const SearchScreen = () => {
             />
             {errorMessage ? <Text>{errorMessage}</Text> : null}
             <Text style={styles.titleStyle}>Films founds: {movies.length}</Text>
-            {/* <MoviesList movies={movies} title="Filmes" /> */}
+            <MoviesList movies={movies} />
             <ScrollView />
         </>
     );

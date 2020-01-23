@@ -15,7 +15,7 @@ const Routes = createAppContainer(
             MovieDetail: {
                 screen: MovieShowScreen,
                 navigationOptions: {
-                    title: 'Movies',
+                    title: 'Movie Detail',
                 },
             },
         },
