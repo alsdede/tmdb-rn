@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 import nologo from '../../assets/image-not-found.png';
 import api from '../services/api';
 // import { getW92ImageUrl } from '../constants/index';
@@ -22,8 +23,13 @@ const MoviesDetails = ({ movies }) => {
             <View style={styles.containeDetail}>
                 <Text style={styles.moviesTitle}>{movies.title}</Text>
                 <Text lineBreakMode>{movies.release_date}</Text>
-                <Text>{movies.vote_average}</Text>
-                <Text>{movies.vote_count}</Text>
+                <View style={styles.containerVoteAverage}>
+                    <Entypo name="star" size={35} color="white" />
+                    <Text style={styles.voteAverage}>
+                        {movies.vote_average}
+                    </Text>
+                </View>
+                <Text>Votes: {movies.vote_count}</Text>
             </View>
         </View>
     );
@@ -34,9 +40,14 @@ const styles = StyleSheet.create({
         margin: 10,
         flexDirection: 'row',
         padding: 5,
-        // backgroundColor: '#565656',
+
+        backgroundColor: 'rgba(255,255,255,0.09)',
     },
     containerImage: {},
+    containerVoteAverage: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     containeDetail: {
         flex: 1,
         marginLeft: 5,
@@ -52,7 +63,13 @@ const styles = StyleSheet.create({
     detailMovie: {},
     moviesTitle: {
         fontWeight: 'bold',
-        fontSize: 16,
+        fontSize: 18,
+        color: '#fff',
+    },
+    voteAverage: {
+        marginLeft: 5,
+        fontSize: 30,
+        color: '#fff',
     },
 });
 
