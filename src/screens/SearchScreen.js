@@ -5,9 +5,7 @@ import useMovies from '../hooks/useMovies';
 import MoviesList from '../components/MoviesList';
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: '#000',
-    },
+    container: {},
     titleStyle: {
         marginLeft: 10,
         marginBottom: 5,
@@ -25,8 +23,8 @@ const SearchScreen = () => {
                 onTermSubmit={() => searchApi(query)}
             />
             {errorMessage ? <Text>{errorMessage}</Text> : null}
-            <Text style={styles.titleStyle}>Films founds: {movies.length}</Text>
-            <MoviesList movies={movies} />
+            <MoviesList horizontal={false} movies={movies} />
+
             <ScrollView />
         </View>
     );

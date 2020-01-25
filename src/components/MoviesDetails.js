@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
-import { Entypo } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import nologo from '../../assets/image-not-found.png';
-import api from '../services/api';
+import { getImage } from '../services/api';
+import { convertDate } from '../utils/date';
+
 // import { getW92ImageUrl } from '../constants/index';
 
 const MoviesDetails = ({ movies }) => {
@@ -12,7 +14,7 @@ const MoviesDetails = ({ movies }) => {
                 {movies.poster_path !== (null || '') ? (
                     <Image
                         source={{
-                            uri: `https://image.tmdb.org/t/p/w342/${movies.poster_path}`,
+                            uri: getImage(movies.poster_path, 342),
                         }}
                         style={styles.imageMovies}
                     />
@@ -22,14 +24,17 @@ const MoviesDetails = ({ movies }) => {
             </View>
             <View style={styles.containeDetail}>
                 <Text style={styles.moviesTitle}>{movies.title}</Text>
-                <Text lineBreakMode>{movies.release_date}</Text>
+                <Text lineBreakMode>{convertDate(movies.release_date)}</Text>
                 <View style={styles.containerVoteAverage}>
-                    <Entypo name="star" size={35} color="white" />
+                    <MaterialIcons name="star" size={35} color="gold" />
                     <Text style={styles.voteAverage}>
                         {movies.vote_average}
                     </Text>
                 </View>
-                <Text>Votes: {movies.vote_count}</Text>
+                <View style={styles.containerVote}>
+                    <MaterialIcons name="people" size={20} color="black" />
+                    <Text>{movies.vote_count}</Text>
+                </View>
             </View>
         </View>
     );
@@ -37,7 +42,7 @@ const MoviesDetails = ({ movies }) => {
 
 const styles = StyleSheet.create({
     container: {
-        margin: 10,
+        flex: 1,
         flexDirection: 'row',
         padding: 5,
 
@@ -47,6 +52,10 @@ const styles = StyleSheet.create({
     containerVoteAverage: {
         flexDirection: 'row',
         alignItems: 'center',
+    },
+    containerVote: {
+        flexDirection: 'row',
+        marginLeft: 10,
     },
     containeDetail: {
         flex: 1,
@@ -64,12 +73,10 @@ const styles = StyleSheet.create({
     moviesTitle: {
         fontWeight: 'bold',
         fontSize: 18,
-        color: '#fff',
     },
     voteAverage: {
         marginLeft: 5,
-        fontSize: 30,
-        color: '#fff',
+        fontSize: 25,
     },
 });
 

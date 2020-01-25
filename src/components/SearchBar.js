@@ -6,8 +6,8 @@ const styles = StyleSheet.create({
     backgroundStyle: {
         marginTop: 15,
         backgroundColor: 'rgba(0,0,0,0.1)',
-        height: 50,
-        borderRadius: 5,
+        height: 40,
+        borderRadius: 20,
         marginHorizontal: 10,
         flexDirection: 'row',
     },
@@ -16,9 +16,9 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     iconStyle: {
-        fontSize: 35,
+        fontSize: 30,
         alignSelf: 'center',
-        marginHorizontal: 15,
+        marginHorizontal: 10,
     },
     iconBarCodeStyle: {
         fontSize: 30,
@@ -31,7 +31,7 @@ const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
         <View style={styles.backgroundStyle}>
             <Feather name="search" style={styles.iconStyle} />
             <TextInput
-                placeholder="Search"
+                placeholder="Search a movie..."
                 style={styles.inputText}
                 autoCapitalize="none"
                 autoCorrect={false}
