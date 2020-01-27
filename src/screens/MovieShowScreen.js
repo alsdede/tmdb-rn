@@ -1,24 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, Image, SafeAreaView } from 'react-native';
 import api, { getImage } from '../services/api';
-import { API_KEY } from '../constants/index';
+import { API_KEY } from '../constants';
 import { screen } from '../utils/sizes';
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        flexDirection: 'row',
     },
 
-    containerImage: {
-        flex: 1,
-        flexDirection: 'row',
-    },
-    title: {
-        color: '#000',
-
-        fontSize: 30,
-        fontWeight: 'bold',
+    infoDetails: {
+        justifyContent: 'center',
     },
 });
 
@@ -45,21 +37,27 @@ const MovieShowScreen = ({ navigation }) => {
     }, []);
 
     return (
-        <SafeAreaView>
-            <View style={styles.container}>
-                <View style={styles.containerImage}>
-                    <Image
-                        resizeMode="cover"
-                        style={{
-                            height: screen.height * 0.3,
-                            width: screen.width,
-                        }}
-                        source={{ uri: getImage(details.poster_path, 342) }}
-                    />
-                    <Text>{details.title}</Text>
-                </View>
+        <View style={styles.container}>
+            <View style={styles.containerImage}>
+                <Image
+                    resizeMode="cover"
+                    style={{
+                        height: screen.height * 0.3,
+                        width: screen.width,
+                    }}
+                    source={{ uri: getImage(details.poster_path, 342) }}
+                />
+                <Text styles={{ fontSize: screen.height * 0.5 }}>
+                    {details.title}
+                </Text>
             </View>
-        </SafeAreaView>
+            <View style={styles.infoDetails} />
+            <Text styles={{ fontSize: 30, color: 'red' }}>teste</Text>
+            <Text>teste</Text>
+            <Text>teste</Text>
+            <Text>teste</Text>
+            <Text>teste</Text>
+        </View>
     );
 };
 

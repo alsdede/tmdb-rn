@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import HomeShowList from '../components/HomeShowList';
+import { View, Text } from 'react-native';
+import HomeShowList from './HomeShowList';
 import api from '../services/api';
 import { API_KEY } from '../constants/index';
 // import useShow from '../hooks/useShow';
-import PopularList from '../components/PopularList';
 
-const HomeScreen = () => {
+const TopRatedList = () => {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {
@@ -21,16 +20,11 @@ const HomeScreen = () => {
     }, []);
 
     return (
-        <View style={styles.container}>
-            <PopularList title="Popular" />
+        <View>
+            <HomeShowList title="Popular" />
+            <HomeShowList title="Top Rated" />
         </View>
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        marginTop: 50,
-        marginLeft: 10,
-    },
-});
-export default HomeScreen;
+export default TopRatedList;

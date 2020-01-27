@@ -23,7 +23,7 @@ const SearchScreen = () => {
                 onTermSubmit={() => searchApi(query)}
             />
             {errorMessage ? <Text>{errorMessage}</Text> : null}
-            <MoviesList horizontal={false} movies={movies} />
+            <MoviesList movies={movies} />
 
             <ScrollView />
         </View>
