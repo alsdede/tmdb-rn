@@ -1,19 +1,26 @@
 # kiper-challenger
 Kiper Challenger - React Native
 
-####Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-React Native
-Expo
-![](https://imgur.com/As0ueoy)
-![](https://imgur.com/1jHeMZv)
-![](https://imgur.com/BJDnsmT)
+
+  Esse projeto foi desenvolvido com as seguintes tecnologias
+    1.React Native
+    2.Expo
 
 
 
 
+<p align="center">
+ <img alt="APP" src="https://github.com/alsdede/kiper-challenger/blob/master/assets/app1.jpeg" width="250px" />
+  <img alt="APP" src="https://github.com/alsdede/kiper-challenger/blob/master/assets/app2.jpeg" width="250px" />
+   <img alt="APP" src="https://github.com/alsdede/kiper-challenger/blob/master/assets/app3.jpeg" width="250px" />
+</p>
 
-####Instalação e execução
+
+
+
+
+Instalação e execução
 
 #### Requisitos:
     Node Js , Expo, Yarn
