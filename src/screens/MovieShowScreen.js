@@ -1,19 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import {
-    View,
-    StyleSheet,
-    Text,
-    Image,
-    SafeAreaView,
-    ScrollView,
-} from 'react-native';
+import { View, StyleSheet, Text, Image, ScrollView } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import api, { getImage } from '../services/api';
-import { API_KEY, GENRES } from '../constants';
+import { API_KEY } from '../constants';
 import { screen } from '../utils/sizes';
 import COLORS from '../constants/colors';
 import { convertTime } from '../utils/time';
 import { convertDate } from '../utils/date';
+import MovieGenres from '../components/MovieGenres';
 
 const MovieShowScreen = ({ navigation }) => {
     const movieId = navigation.getParam('id');
@@ -74,6 +68,7 @@ const MovieShowScreen = ({ navigation }) => {
                                 {details.title}
                             </Text>
                         </View>
+                        <View />
                         <View style={styles.containerPreviewDetail}>
                             <View
                                 style={{
@@ -132,6 +127,9 @@ const MovieShowScreen = ({ navigation }) => {
                             </View>
                         </View>
                     </View>
+                    <View style={styles.containerGenres}>
+                        {details && <MovieGenres details={details} />}
+                    </View>
                     <View style={styles.overview}>
                         <Text
                             style={{
@@ -149,6 +147,11 @@ const MovieShowScreen = ({ navigation }) => {
                         <Text style={{ color: '#EEE9E9' }}>
                             {details.overview}
                         </Text>
+
+                        <View>
+                            <Text />
+                            <Text />
+                        </View>
                     </View>
                 </View>
                 <View />
@@ -219,6 +222,14 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'rgba(70,130,180,0.03)',
     },
+    containerGenres: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        flex: 1,
+        padding: 5,
+        backgroundColor: 'rgba(70,130,180,0.03)',
+        marginBottom: 5,
+    },
     posterText: {
         backgroundColor: '#141B31',
         color: '#FFF',
@@ -233,10 +244,11 @@ const styles = StyleSheet.create({
         shadowColor: '#a0a0a0',
         shadowOffset: {
             width: 1,
-            height: 0,
+            height: 1,
         },
         shadowOpacity: 1,
         shadowRadius: 1,
+
         flexDirection: 'row',
         flex: 1,
         justifyContent: 'space-between',

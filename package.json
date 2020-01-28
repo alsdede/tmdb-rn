@@ -9,13 +9,14 @@
         "test": "jest"
     },
     "jest": {
+        "preset": "@testing-library/react-native",
         "testMatch": [
             "**/__tests__/**/*.test.js"
         ],
-        "setupFilesAfterEnv": [
-            "@testing-library/react/cleanup-after-each",
-            "@testing-library/jest-dom/extend-expect"
-        ]
+        "collectCoverageFrom": [
+            "!src/services/api.js"
+        ],
+        "coverageDirectory": "__tests__/coverage"
     },
     "dependencies": {
         "@expo/vector-icons": "^10.0.0",
@@ -39,11 +40,11 @@
         "react-navigation": "^4.0.10",
         "react-navigation-drawer": "^2.3.3",
         "react-navigation-stack": "^2.0.15",
-        "react-navigation-tabs": "^2.7.0"
+        "react-navigation-tabs": "^2.7.0",
+        "react-test-renderer": "^16.12.0"
     },
     "devDependencies": {
         "@babel/core": "^7.0.0",
-        "@testing-library/react": "^9.4.0",
         "@testing-library/react-native": "^5.0.3",
         "babel-eslint": "^10.0.3",
         "babel-preset-expo": "~8.0.0",
