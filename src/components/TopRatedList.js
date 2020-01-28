@@ -1,30 +1,56 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
-import HomeShowList from './HomeShowList';
-import api from '../services/api';
-import { API_KEY } from '../constants/index';
-// import useShow from '../hooks/useShow';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    FlatList,
+} from 'react-native';
 
-const TopRatedList = () => {
+import HomeDetails from './HomeDetails';
+import useShow from '../hooks/useShow';
+
+const TopRatedList = props => {
     const [movies, setMovies] = useState([]);
-
+    const [loading, results, errorMessage, loadShowList] = useShow();
     useEffect(() => {
-        async function loadShowList() {
-            const response = await api.get(
-                `/movie/popular?api_key=9dbaa60a5bc200c71275470164b49b92&language=en-US&page=1`
-            );
-            setMovies(response.data.results);
-            console.log(response.data.results);
-        }
-        loadShowList();
+        loadShowList('top_rated');
+        setMovies(results);
     }, []);
 
     return (
         <View>
-            <HomeShowList title="Popular" />
-            <HomeShowList title="Top Rated" />
+            <Text style={styles.title}>{props.title}</Text>
+            <FlatList
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                data={results}
+                keyExtractor={movie => movie.id.toString()}
+                renderItem={({ item }) => {
+                    return (
+                        <TouchableOpacity
+                            onPress={() =>
+                                props.navigation.navigate('MovieShow', {
+                                    id: item.id,
+                                })
+                            }
+                        >
+                            <HomeDetails movie={item} />
+                        </TouchableOpacity>
+                    );
+                }}
+            />
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    title: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 5,
+    },
+});
 
 export default TopRatedList;

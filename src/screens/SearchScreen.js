@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Button } from 'react-native';
 import SearchBar from '../components/SearchBar';
 import useMovies from '../hooks/useMovies';
 import MoviesList from '../components/MoviesList';
 
 const styles = StyleSheet.create({
-    container: {},
+    container: {
+        color: '#000',
+        flex: 1,
+        backgroundColor: '#000',
+    },
     titleStyle: {
         marginLeft: 10,
         marginBottom: 5,
     },
 });
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
     const [query, setQuery] = useState('');
     const [searchApi, movies, errorMessage] = useMovies();
     return (
@@ -22,6 +26,7 @@ const SearchScreen = () => {
                 onTermChange={setQuery}
                 onTermSubmit={() => searchApi(query)}
             />
+
             {errorMessage ? <Text>{errorMessage}</Text> : null}
             <MoviesList movies={movies} />
 

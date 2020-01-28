@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
-    FlatList,
     StyleSheet,
     TouchableOpacity,
+    FlatList,
 } from 'react-native';
 
-import useShow from '../hooks/useShow';
 import HomeDetails from './HomeDetails';
+import useShow from '../hooks/useShow';
 
-const PopularList = props => {
+const UpcomingList = props => {
     const [movies, setMovies] = useState([]);
     const [loading, results, errorMessage, loadShowList] = useShow();
     useEffect(() => {
-        loadShowList('popular');
+        loadShowList('upcoming');
         setMovies(results);
     }, []);
 
@@ -52,4 +52,5 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
 });
-export default PopularList;
+
+export default UpcomingList;

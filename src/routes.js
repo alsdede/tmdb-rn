@@ -6,7 +6,16 @@ import { MaterialIcons } from '@expo/vector-icons';
 import SearchScreen from './screens/SearchScreen';
 import MovieShowScreen from './screens/MovieShowScreen';
 import HomeScreen from './screens/HomeScreen';
-import colors from './constants/colors';
+import COLORS from './constants/colors';
+
+const defaultStackNavOptions = {
+    headerTintColor: '#fff',
+    headerBackTitleVisible: false,
+
+    headerStyle: {
+        backgroundColor: '#000',
+    },
+};
 
 const Routes = createStackNavigator(
     {
@@ -25,20 +34,28 @@ const Routes = createStackNavigator(
         },
     },
     {
-        defaultNavigationOptions: {
-            headerTintColor: '#000',
-            headerBackTitleVisible: false,
-            headerStyle: {
-                backgroundColor: '#fff',
-            },
-        },
+        defaultNavigationOptions: defaultStackNavOptions,
     }
 );
 
+const HomeStack = createStackNavigator(
+    {
+        Home: HomeScreen,
+        MovieShow: {
+            screen: MovieShowScreen,
+            navigationOptions: {
+                title: 'Movie Details',
+            },
+        },
+    },
+    {
+        defaultNavigationOptions: defaultStackNavOptions,
+    }
+);
 const MainNavigator = createBottomTabNavigator(
     {
         Home: {
-            screen: HomeScreen,
+            screen: HomeStack,
             navigationOptions: {
                 tabBarIcon: tabInfo => {
                     return (
@@ -68,7 +85,7 @@ const MainNavigator = createBottomTabNavigator(
     },
     {
         tabBarOptions: {
-            activeTintColor: '#fff',
+            activeTintColor: COLORS.textColor,
             style: {
                 backgroundColor: '#000',
             },

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import api from '../services/api';
 import { API_KEY } from '../constants/index';
 
@@ -7,9 +7,10 @@ export default () => {
     const [loading, setLoading] = useState(true);
     const [errorMessage, setErrorMessage] = useState([]);
 
-    const searchShowList = async path => {
+    const loadShowList = async path => {
         try {
             const response = await api.get(`/movie/${path}?api_key=${API_KEY}`);
+
             setResults(response.data.results);
             setLoading(false);
         } catch (err) {
@@ -17,8 +18,8 @@ export default () => {
             setLoading(false);
         }
     };
-    useEffect(() => {
+    /* useEffect(() => {
         searchShowList('popular');
-    }, []);
-    return [loading, results, errorMessage, searchShowList];
+    }, []); */
+    return [loading, results, errorMessage, loadShowList];
 };

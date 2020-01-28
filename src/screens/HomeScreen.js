@@ -1,36 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import HomeShowList from '../components/HomeShowList';
-import api from '../services/api';
-import { API_KEY } from '../constants/index';
-// import useShow from '../hooks/useShow';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import useShow from '../hooks/useShow';
 import PopularList from '../components/PopularList';
+import TopRatedList from '../components/TopRatedList';
+import UpcomingList from '../components/UpcomingList';
 
-const HomeScreen = () => {
+const HomeScreen = props => {
     const [movies, setMovies] = useState([]);
-
+    const [loading, results, errorMessage, loadShowList] = useShow();
     useEffect(() => {
-        async function loadShowList() {
-            const response = await api.get(
-                `/movie/popular?api_key=9dbaa60a5bc200c71275470164b49b92&language=en-US&page=1`
-            );
-            setMovies(response.data.results);
-            console.log(response.data.results);
-        }
-        loadShowList();
+        loadShowList('popular');
+        setMovies(results);
     }, []);
 
     return (
-        <View style={styles.container}>
-            <PopularList title="Popular" />
-        </View>
+        <ScrollView style={styles.container2}>
+            <View style={styles.container}>
+                <UpcomingList title="Upcoming" navigation={props.navigation} />
+                <PopularList title="Popular" navigation={props.navigation} />
+                <TopRatedList title="Top Rated" navigation={props.navigation} />
+            </View>
+        </ScrollView>
     );
 };
 
 const styles = StyleSheet.create({
+    container2: {
+        flex: 1,
+        backgroundColor: '#000',
+        color: '#fff',
+    },
     container: {
-        marginTop: 50,
+        flex: 1,
+        marginTop: 20,
         marginLeft: 10,
+        color: '#fff',
     },
 });
 export default HomeScreen;

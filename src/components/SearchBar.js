@@ -5,8 +5,8 @@ import { Feather } from '@expo/vector-icons';
 const styles = StyleSheet.create({
     backgroundStyle: {
         marginTop: 15,
-        backgroundColor: 'rgba(0,0,0,0.1)',
-        height: 40,
+        backgroundColor: '#FFF',
+        height: 35,
         borderRadius: 20,
         marginHorizontal: 10,
         flexDirection: 'row',
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
     iconStyle: {
-        fontSize: 30,
+        fontSize: 25,
         alignSelf: 'center',
         marginHorizontal: 10,
     },
